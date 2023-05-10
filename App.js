@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import MeatAndEat from './src/routes/MeatAndEat';
+import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
+import { AppLoading } from 'expo-app-loading';
+
+
+
 
 export default function App() {
+  // fonts
+  // const [fontsLoaded] = useFonts({
+  //   'Sigmar-Regular': require('./src/fonts/Sigmar-Regular.ttf'),
+  // });
+
+  // // appLoading
+  // if (!fontsLoaded) {
+  //   return (<AppLoading/>)
+  // }
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MeatAndEat/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
