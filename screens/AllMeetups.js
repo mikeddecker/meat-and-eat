@@ -3,21 +3,27 @@ import React, { useState } from 'react'
 import globalStyles from '../src/global/globalStyles'
 import LayoutContainer from '../src/components/LayoutContainer'
 import { FlatList } from 'react-native'
-import MeatUpPlaces from '../src/global/MeatUpPlaces'
 import ItemCard from '../src/components/ItemCard'
 import AddMeetupLocation from '../src/components/AddMeetupLocation'
-import uuid from 'uuid'
 import { Entypo } from '@expo/vector-icons'; 
-
+import {
+  meatupAdded,
+  meatupFavorized,
+  selectMeatups,
+} from '../store/slicers/meatupSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const AllMeetups = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false)
 
   const [rerender, useRerender] = useState(false)
+  const meatups = useSelector(selectMeatups)
+  const dispatch = useDispatch()
+
 
   const toggleFavorite = (item) => {
-      item.favorite = !item.favorite
-      useRerender(!rerender)
+    dispatch(meatupFavorized(item))
+    useRerender(!rerender)
   }
 
   const navigateTo = (item) => {
@@ -27,8 +33,8 @@ const AllMeetups = ({ navigation, route }) => {
   const addLocation = (location) => {
     let addToList = true
 
-    for (let meatId in MeatUpPlaces) {
-      let meat = MeatUpPlaces[meatId]
+    for (let meatId in meatups) {
+      let meat = meatups[meatId]
       if (meat.address === location.address) {
         Alert.alert('Address already exists', location.address, [
           {text: 'OK'},
@@ -38,9 +44,7 @@ const AllMeetups = ({ navigation, route }) => {
     }
 
     if (addToList) {
-      location.favorite = false
-      MeatUpPlaces.push(location)
-      location.id = uuid.v4()
+      dispatch(meatupAdded(location))
     }
     // add new id
   }
@@ -64,15 +68,16 @@ const AllMeetups = ({ navigation, route }) => {
       >
         <View style={styles.flatlistContainer}>
           <FlatList
-            data={MeatUpPlaces}
+            data={meatups}
             renderItem=
             {
               ({item}) => (
-                <View key={item} style={{flex: 1}}>
+                <View key={item.id} style={{flex: 1}}>
                   <ItemCard
-                  item={item}
-                  onNavigate={(item) => navigateTo(item)}
-                  onFavorite={() => toggleFavorite(item)}
+                    key={item.id}
+                    item={item}
+                    onNavigate={(item) => navigateTo(item)}
+                    onFavorite={() => toggleFavorite(item)}
                   />
                 </View>
               )

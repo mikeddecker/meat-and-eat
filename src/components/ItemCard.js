@@ -2,9 +2,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'; 
 import Card from './Card'
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { meatupDeleted } from '../../store/slicers/meatupSlice';
 
 const ItemCard = ({ item, onNavigate, onFavorite }) => {
     const iconSize = 36
+    const dispatch = useDispatch()
 
     const navigate = () => {
         onNavigate(item)
@@ -15,8 +18,11 @@ const ItemCard = ({ item, onNavigate, onFavorite }) => {
             <Card>
                 <Text style={styles.text}>{item.title}</Text>
                 <View style={styles.icons}>
-                    <TouchableOpacity  style={styles.card} onPress={() => navigate()}>
+                    <TouchableOpacity onPress={() => navigate()}>
                         <MaterialIcons name="info" size={iconSize} color="black" style={styles.icon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => dispatch(meatupDeleted(item))}>
+                        <MaterialIcons name="delete" size={iconSize} color="gold" style={styles.icon} />
                     </TouchableOpacity>
                     {
                         item.favorite ? 
@@ -39,7 +45,9 @@ const styles = StyleSheet.create({
     text: {
         width: '100%',
         textAlign: 'center',
-        fontSize: 28,
+        fontSize: 24,
+        height: 56,
+        margin: 5,
     },
     icons: {
         display: 'flex',

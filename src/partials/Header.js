@@ -5,10 +5,11 @@ import React from 'react'
 const image = require('../img/burger-bg-unsplash.jpg');
 
 
-const Header = ({options}) => {  
+const Header = ({options, amount}) => {  
   return (
     <ImageBackground source={image} style={styles.container}>
       <View style={styles.textContainer}>
+        <Text style={styles.text}>{amount}</Text>
         <Text style={styles.text}>{options.title}</Text>
       </View>
       {options.goBack && (
@@ -27,7 +28,7 @@ export default Header
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
@@ -40,12 +41,12 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: 'green',
     
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignSelf: 'center',
     alignItems: 'center',
   },
   text: {
-    fontSize: 36,
+    fontSize: 34,
     fontWeight: 'bold',
     color: 'gold',
     textShadowColor: '#000',

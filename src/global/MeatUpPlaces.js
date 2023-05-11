@@ -1,6 +1,9 @@
+import uuid from 'uuid'
+
+
 const locations = [
     {
-        id: '1',
+        id: uuid.v4(),
         title: 'Kurger Bing',
         address: 'Park of Royals 23',
         description: 'A wonderfull burger feast where you will be served as a Royalty',
@@ -8,7 +11,7 @@ const locations = [
         stars: 3
     },
     {
-        id: '2',
+        id: uuid.v4(),
         title: 'Street Burgers',
         address: 'Park of Royals 23',
         description: 'A wonderfull burger feast where you will be served as a Royalty',
@@ -16,7 +19,7 @@ const locations = [
         stars: 3
     },
     {
-        id: '3',
+        id: uuid.v4(),
         title: 'Holy burgers',
         address: 'Park of Royals 23',
         description: 'A wonderfull burger feast where you will be served as a Royalty',
@@ -24,7 +27,7 @@ const locations = [
         stars: 3
     },
     {
-        id: '4',
+        id: uuid.v4(),
         title: 'Burgers of Nature',
         address: 'Park of Royals 23',
         description: 'A wonderfull burger feast where you will be served as a Royalty',
@@ -32,7 +35,7 @@ const locations = [
         stars: 3
     },
     {
-        id: '5',
+        id: uuid.v4(),
         title: 'Chungers',
         address: 'Park of Royals 23',
         description: 'A wonderfull burger feast where you will be served as a Royalty',
@@ -40,14 +43,14 @@ const locations = [
         stars: 3
     },
     {
-        id: '6',
+        id: uuid.v4(),
         title: 'Channol Bing',
         address: 'Park of Royals 23',
         description: 'A wonderfull burger feast where you will be served as a Royalty',
         favorite: false,
         stars: 3
     },{
-        id: '7',
+        id: uuid.v4(),
         title: 'KFC Burgers',
         address: 'Park of Royals 23',
         description: 'A wonderfull burger feast where you will be served as a Royalty',
@@ -59,7 +62,7 @@ const locations = [
 export default locations
 
 const template = {
-    id: '1',
+    id: uuid.v4(),
     title: '',
     address: '',
     description: '',

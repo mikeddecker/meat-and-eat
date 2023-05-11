@@ -1,45 +1,48 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons';
 import Card from './Card'
+import { useDispatch, useSelector } from 'react-redux';
+import { meatupFavorized } from '../../store/slicers/meatupSlice';
 
 
 const ItemCardDetail = ({item}) => {
-    const [rerender, useRerender] = useState(item.favorite)
+    const dispatch = useDispatch()
     const iconSize = 36
 
-    const toggleFavorite = () => {
-        useRerender( item.favorite = !item.favorite)
-    }
+    const updatedItem = useSelector(state => {
+        return state.meatUps.find(meatup => meatup.id === item.id);
+    });
 
+    const toggleFavorite = () => {
+        dispatch(meatupFavorized(updatedItem));
+    };
 
     let stars = []
-    for (let i = 0; i < item.stars; i++) {
+    for (let i = 0; i < updatedItem.stars; i++) {
       stars.push(<MaterialIcons name="star" size={24} color="gold" />)
     }
 
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container} key={updatedItem.id}>
             <Card>
-                <Text style={[styles.title]}>{item.title}</Text>
+                <Text style={[styles.title]}>{updatedItem.title}</Text>
                 <View style={styles.body}>
-                    <Text style={[styles.text, styles.marginV]}>{item.address}</Text>
-                    <Text style={[styles.description, styles.marginV]}>{item.description}</Text>
-                    
+                    <Text style={[styles.text, styles.marginV]}>{updatedItem.address}</Text>
+                    <Text style={[styles.description, styles.marginV]}>{updatedItem.description}</Text>
+
                     <View style={[styles.stars, styles.marginV]}>{stars}</View>
                 </View>
                 <View style={[styles.icons, styles.marginV]}>
                     {
-                    item.favorite
-                    ? 
-                    <MaterialIcons name="favorite" size={iconSize * 2} color="red" onPress={toggleFavorite}  style={styles.icon}/> : 
+                    updatedItem.favorite
+                    ?
+                    <MaterialIcons name="favorite" size={iconSize * 2} color="red" onPress={toggleFavorite}  style={styles.icon}/> :
                     <MaterialIcons name="favorite-border" size={iconSize * 2} color="coral" onPress={toggleFavorite} style={styles.icon} />
                     }
                 </View>
-
             </Card>
-
         </View>
     )
 }
@@ -48,7 +51,7 @@ export default ItemCardDetail
 
 const styles = StyleSheet.create({
     container:{
-        maxHeight: '50%'
+        flex: 1,
     },
     title: {
         // width: '100%',
@@ -56,16 +59,16 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 12
     },
-        description: {
+    description: {
         // width: '100%',
         fontSize: 24,
         textAlign: 'center'
     },
-        text: {
+    text: {
         fontSize: 24,
         textAlign: 'center',
     },
-        marginV: {
+    marginV: {
         marginVertical: 8
     },
     stars: {

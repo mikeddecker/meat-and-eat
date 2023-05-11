@@ -3,21 +3,27 @@ import * as Font from 'expo-font';
 import { useFonts } from 'expo-font';
 import { AppLoading } from 'expo-app-loading';
 
+import { Provider } from 'react-redux'
+import { store } from './store';
+
+
 
 
 
 export default function App() {
   // fonts
-  // const [fontsLoaded] = useFonts({
-  //   'Sigmar-Regular': require('./src/fonts/Sigmar-Regular.ttf'),
-  // });
+  const [fontsLoaded] = useFonts({
+    'Sigmar-Regular': require('./src/fonts/Sigmar-Regular.ttf'),
+  });
 
   // // appLoading
   // if (!fontsLoaded) {
-  //   return (<AppLoading/>)
+  //   return <AppLoading/>
   // }
   
   return (
-    <MeatAndEat/>
+    <Provider store={store}>
+      <MeatAndEat/>
+    </Provider>
   );
 }
