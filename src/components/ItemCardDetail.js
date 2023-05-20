@@ -20,12 +20,12 @@ const ItemCardDetail = ({item}) => {
 
     let stars = []
     for (let i = 0; i < updatedItem.stars; i++) {
-      stars.push(<MaterialIcons name="star" size={24} color="gold" />)
+        const starKey = `star-${i}`;
+        stars.push(<MaterialIcons key={starKey} name="star" size={24} color="gold" />)
     }
 
-
     return (
-        <View style={styles.container} key={updatedItem.id}>
+        <View style={styles.container}>
             <Card>
                 <Text style={[styles.title]}>{updatedItem.title}</Text>
                 <View style={styles.body}>
@@ -52,6 +52,7 @@ export default ItemCardDetail
 const styles = StyleSheet.create({
     container:{
         flex: 1,
+        width: '100%'
     },
     title: {
         // width: '100%',

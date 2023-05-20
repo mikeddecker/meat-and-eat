@@ -18,13 +18,10 @@ const MeetupDetails = ({ navigation, route }) => {
           title: 'Details',
           goBack: goBack
         }}
-        // style={globalStyles.container}
       >
         <View style={[globalStyles.containerLeft]}>
           <ItemCardDetail item={item} />
         </View>
-
-      {/* Footer to switch, but I expect it to be in the nav */}
       </LayoutContainer>
     </View>
   )

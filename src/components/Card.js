@@ -3,7 +3,7 @@ import React from 'react'
 
 const Card = (props) => {
   return (
-    <View key={props.key} style={styles.card}>
+    <View style={styles.card}>
       {props.children}
     </View>
   )

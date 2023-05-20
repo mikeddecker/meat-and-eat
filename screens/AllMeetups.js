@@ -1,5 +1,5 @@
 import { StatusBar, StyleSheet, Text, View, Button, Modal, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import globalStyles from '../src/global/globalStyles'
 import LayoutContainer from '../src/components/LayoutContainer'
 import { FlatList } from 'react-native'
@@ -16,14 +16,11 @@ import { useDispatch, useSelector } from 'react-redux'
 const AllMeetups = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false)
 
-  const [rerender, useRerender] = useState(false)
   const meatups = useSelector(selectMeatups)
   const dispatch = useDispatch()
 
-
   const toggleFavorite = (item) => {
     dispatch(meatupFavorized(item))
-    useRerender(!rerender)
   }
 
   const navigateTo = (item) => {
@@ -33,9 +30,8 @@ const AllMeetups = ({ navigation, route }) => {
   const addLocation = (location) => {
     let addToList = true
 
-    for (let meatId in meatups) {
-      let meat = meatups[meatId]
-      if (meat.address === location.address) {
+    for (let meatup of meatups) {
+      if (meatup.address === location.address) {
         Alert.alert('Address already exists', location.address, [
           {text: 'OK'},
         ]);
@@ -46,7 +42,6 @@ const AllMeetups = ({ navigation, route }) => {
     if (addToList) {
       dispatch(meatupAdded(location))
     }
-    // add new id
   }
 
   return (
@@ -69,22 +64,19 @@ const AllMeetups = ({ navigation, route }) => {
         <View style={styles.flatlistContainer}>
           <FlatList
             data={meatups}
-            renderItem=
-            {
-              ({item}) => (
-                <View key={item.id} style={{flex: 1}}>
-                  <ItemCard
-                    key={item.id}
-                    item={item}
-                    onNavigate={(item) => navigateTo(item)}
-                    onFavorite={() => toggleFavorite(item)}
-                  />
-                </View>
-              )
-            }
+            renderItem={({item}) => (
+              <ItemCard 
+                item={item} 
+                onNavigate={navigateTo}
+                onFavorite={() => toggleFavorite(item)}
+                />
+            )}
             horizontal={false}
             numColumns={2}
-          />
+          >
+
+          </FlatList>
+        
         </View>
 
         <Entypo 

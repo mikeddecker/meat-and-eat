@@ -1,3 +1,6 @@
+<script src="http://localhost:8097"></script>
+
+
 import MeatAndEat from './src/routes/MeatAndEat';
 import * as Font from 'expo-font';
 import { useFonts } from 'expo-font';
