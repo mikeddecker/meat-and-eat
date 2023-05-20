@@ -10,8 +10,8 @@ const meatUpSlice = createSlice({
     meatupAdded(state, action) {
         location = action.payload
         location.favorite = false
-        state.push(location)
         location.id = uuid.v4()
+        state.push(location)
         return state
     },
     meatupDeleted(state, action) {
@@ -20,13 +20,15 @@ const meatUpSlice = createSlice({
         return state.filter(item => item.id !== idToDelete);
     },
     meatupFavorized(state, action) {
-        for (let i in state) {
-            if (state[i].id === action.payload.id) {
-                state[i].favorite = !action.payload.favorite
-            } 
-        }
-        
-        return state
+        return state.map(meatup => {
+            if (meatup.id === action.payload.id) {
+              return {
+                ...meatup,
+                favorite: !meatup.favorite
+              };
+            }
+            return meatup;
+        });
     },
   }
 })
@@ -43,10 +45,8 @@ export const totalFavorite = (state) => {
     return amount
 }
 
-export const { meatupAdded, meatupDeleted, meatupFavorized, getMeatupById } = meatUpSlice.actions
-// Selector function
-export const selectMeatupById = (state, itemId) => {
-  state.find(meatup => meatup.id === itemId)
-}
 export const selectMeatups = state => state.meatUps
+
+export const { meatupAdded, meatupDeleted, meatupFavorized, getMeatupById } = meatUpSlice.actions
+
 export default meatUpSlice.reducer
