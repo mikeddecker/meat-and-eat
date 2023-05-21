@@ -22,7 +22,7 @@ const AllMeetupsStack = () => {
   );
 }
 
-const MeatAndEat = () => {
+const MeatAndEatNavigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -61,7 +61,7 @@ const MeatAndEat = () => {
   )
 }
 
-export default MeatAndEat
+export default MeatAndEatNavigation
 
 const styles = StyleSheet.create({
     container: {

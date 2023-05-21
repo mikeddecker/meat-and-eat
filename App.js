@@ -1,7 +1,7 @@
 <script src="http://localhost:8097"></script>
 
 
-import MeatAndEat from './src/routes/MeatAndEat';
+import MeatAndEatNavigation from './src/routes/MeatAndEatNavigation';
 import * as Font from 'expo-font';
 import { useFonts } from 'expo-font';
 import { AppLoading } from 'expo-app-loading';
@@ -26,7 +26,7 @@ export default function App() {
   
   return (
     <Provider store={store}>
-      <MeatAndEat/>
+      <MeatAndEatNavigation/>
     </Provider>
   );
 }
