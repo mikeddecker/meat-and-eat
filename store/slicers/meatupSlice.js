@@ -2,10 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import MeatUpPlaces from '../../src/global/MeatUpPlaces'
 import uuid from 'uuid'
 
-
 const meatUpSlice = createSlice({
   name: 'meatUps',
-  initialState: MeatUpPlaces,
+  initialState: [],
   reducers: {
     meatupAdded(state, action) {
         location = action.payload
@@ -30,7 +29,7 @@ const meatUpSlice = createSlice({
             return meatup;
         });
     },
-  }
+  },
 })
 
 export const totalFavorite = (state) => {
@@ -45,7 +44,7 @@ export const totalFavorite = (state) => {
     return amount
 }
 
-export const selectMeatups = state => state.meatUps
+export const meatupLocations = state => state.meatUps
 
 export const { meatupAdded, meatupDeleted, meatupFavorized, getMeatupById } = meatUpSlice.actions
 
