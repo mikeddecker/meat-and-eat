@@ -19,7 +19,7 @@ import { db } from '../src/firebase'
 const AllMeetups = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false)
 
-  const [meatups, setProducts] = useState([])
+  const [meatups, setMeatups] = useState([])
   // const meatups = useSelector(meatupLocations)
   const dispatch = useDispatch()
 
@@ -28,7 +28,7 @@ const AllMeetups = ({ navigation, route }) => {
     const dbRef = collection(db, "meat-ups")
 
     const unsubscribe = onSnapshot(dbRef,
-        (qs) => setProducts(qs.docs.map((doc) => {
+        (qs) => setMeatups(qs.docs.map((doc) => {
             console.log(doc.data())
             return {id: doc.id, ...doc.data()}
         }
