@@ -13,7 +13,7 @@ import {
   meatupLocations,
 } from '../store/slicers/meatupSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, getDocs, onSnapshot, query } from 'firebase/firestore'
 import { db } from '../src/firebase'
 
 const AllMeetups = ({ navigation, route }) => {
@@ -24,7 +24,6 @@ const AllMeetups = ({ navigation, route }) => {
   const dispatch = useDispatch()
 
   useEffect(()=> {
-    // Get the collection "products"
     const dbRef = collection(db, "meat-ups")
 
     const unsubscribe = onSnapshot(dbRef,
@@ -35,7 +34,8 @@ const AllMeetups = ({ navigation, route }) => {
     )))
 
     return () => unsubscribe()
-}, [])
+  }, [])
+
 
 
 

@@ -19,6 +19,8 @@ const meatUpSlice = createSlice({
         return state.filter(item => item.id !== idToDelete);
     },
     meatupFavorized(state, action) {
+        console.debug('state is', state, action)
+        return state
         return state.map(meatup => {
             if (meatup.id === action.payload.id) {
               return {
