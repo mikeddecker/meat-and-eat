@@ -2,15 +2,18 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'; 
 import Card from './Card'
 import React from 'react'
-import { useDispatch } from 'react-redux';
-import { meatupDeleted } from '../../store/slicers/meatupSlice';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const ItemCard = ({ item, onNavigate, onFavorite }) => {
     const iconSize = 36
-    const dispatch = useDispatch()
 
     const navigate = () => {
         onNavigate(item)
+    }
+
+    const deleteLocation = () => {
+        deleteDoc(doc(db, 'meat-ups', item.id))
     }
 
     return (
@@ -21,7 +24,7 @@ const ItemCard = ({ item, onNavigate, onFavorite }) => {
                     <TouchableOpacity onPress={() => navigate()}>
                         <MaterialIcons name="info" size={iconSize} color="black" style={styles.icon} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => dispatch(meatupDeleted(item))}>
+                    <TouchableOpacity onPress={deleteLocation}>
                         <MaterialIcons name="delete" size={iconSize} color="gold" style={styles.icon} />
                     </TouchableOpacity>
                     {

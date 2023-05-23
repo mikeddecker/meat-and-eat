@@ -6,30 +6,20 @@ import { FlatList } from 'react-native'
 import ItemCard from '../src/components/ItemCard'
 import AddMeetupLocation from '../src/components/AddMeetupLocation'
 import { Entypo } from '@expo/vector-icons'; 
-import {
-  fetchLocations,
-  meatupAdded,
-  meatupFavorized,
-  meatupLocations,
-} from '../store/slicers/meatupSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { collection, getDocs, onSnapshot, query } from 'firebase/firestore'
+import { collection, doc, getDocs, onSnapshot, query, setDoc } from 'firebase/firestore'
 import { db } from '../src/firebase'
 
 const AllMeetups = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false)
 
   const [meatups, setMeatups] = useState([])
-  // const meatups = useSelector(meatupLocations)
-  const dispatch = useDispatch()
 
   useEffect(()=> {
     const dbRef = collection(db, "meat-ups")
 
     const unsubscribe = onSnapshot(dbRef,
         (qs) => setMeatups(qs.docs.map((doc) => {
-            console.log(doc.data())
-            return {id: doc.id, ...doc.data()}
+          return {id: doc.id, ...doc.data()}
         }
     )))
 
@@ -40,7 +30,8 @@ const AllMeetups = ({ navigation, route }) => {
 
 
   const toggleFavorite = (item) => {
-    dispatch(meatupFavorized(item))
+    // dispatch(meatupFavorized(item))
+    console.debug('toggle favorite', item)
   }
 
   const navigateTo = (item) => {
@@ -60,7 +51,8 @@ const AllMeetups = ({ navigation, route }) => {
     }
 
     if (addToList) {
-      dispatch(meatupAdded(location))
+      let meatupRef = collection(db, 'meat-ups')
+      setDoc(doc(meatupRef), location)
     }
   }
 

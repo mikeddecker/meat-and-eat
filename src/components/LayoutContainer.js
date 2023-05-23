@@ -1,18 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import globalStyles from '../global/globalStyles'
-import { totalFavorite } from '../../store/slicers/meatupSlice'
-import { useSelector } from 'react-redux'
 import Header from './Header'
 
 const LayoutContainer = (props) => {
-    const amount = useSelector(totalFavorite)
-    
     return (
         <View style={globalStyles.container}>
             <Header
                 options={props.header}
-                amount={amount}
+                amount={-3}
             />
             <View style={[styles.body, props.styles]}>
                 {props.children}

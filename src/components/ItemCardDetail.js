@@ -2,20 +2,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import Card from './Card'
-import { useDispatch, useSelector } from 'react-redux';
-import { meatupFavorized } from '../../store/slicers/meatupSlice';
 
 
 const ItemCardDetail = ({item}) => {
     const dispatch = useDispatch()
     const iconSize = 36
 
-    const updatedItem = useSelector(state => {
-        return state.meatUps.find(meatup => meatup.id === item.id);
-    });
 
     const toggleFavorite = () => {
-        dispatch(meatupFavorized(updatedItem));
+        console.debug('toggle favorite')
     };
 
     let stars = []

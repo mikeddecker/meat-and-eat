@@ -7,7 +7,6 @@ import { useFonts } from 'expo-font';
 import { AppLoading } from 'expo-app-loading';
 
 import { Provider } from 'react-redux'
-import { store } from './store';
 
 export default function App() {
   // fonts
@@ -21,8 +20,8 @@ export default function App() {
   // }
   
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <MeatAndEatNavigation/>
-    </Provider>
+    // </Provider>
   );
 }
