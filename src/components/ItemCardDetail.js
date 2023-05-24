@@ -2,19 +2,24 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import Card from './Card'
+import { db } from '../firebase';
+import { doc, updateDoc } from 'firebase/firestore';
 
 
 const ItemCardDetail = ({item}) => {
-    const dispatch = useDispatch()
     const iconSize = 36
 
+    const realTimeItem = doc
 
     const toggleFavorite = () => {
-        console.debug('toggle favorite')
+        const itemRef = doc(db, 'meat-ups', item.id)
+        updateDoc(itemRef, {
+            favorite: !item.favorite
+        })
     };
 
     let stars = []
-    for (let i = 0; i < updatedItem.stars; i++) {
+    for (let i = 0; i < item.stars; i++) {
         const starKey = `star-${i}`;
         stars.push(<MaterialIcons key={starKey} name="star" size={24} color="gold" />)
     }
@@ -22,16 +27,16 @@ const ItemCardDetail = ({item}) => {
     return (
         <View style={styles.container}>
             <Card>
-                <Text style={[styles.title]}>{updatedItem.title}</Text>
+                <Text style={[styles.title]}>{item.title}</Text>
                 <View style={styles.body}>
-                    <Text style={[styles.text, styles.marginV]}>{updatedItem.address}</Text>
-                    <Text style={[styles.description, styles.marginV]}>{updatedItem.description}</Text>
+                    <Text style={[styles.text, styles.marginV]}>{item.address}</Text>
+                    <Text style={[styles.description, styles.marginV]}>{item.description}</Text>
 
                     <View style={[styles.stars, styles.marginV]}>{stars}</View>
                 </View>
                 <View style={[styles.icons, styles.marginV]}>
                     {
-                    updatedItem.favorite
+                    item.favorite
                     ?
                     <MaterialIcons name="favorite" size={iconSize * 2} color="red" onPress={toggleFavorite}  style={styles.icon}/> :
                     <MaterialIcons name="favorite-border" size={iconSize * 2} color="coral" onPress={toggleFavorite} style={styles.icon} />

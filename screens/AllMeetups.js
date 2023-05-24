@@ -6,7 +6,7 @@ import { FlatList } from 'react-native'
 import ItemCard from '../src/components/ItemCard'
 import AddMeetupLocation from '../src/components/AddMeetupLocation'
 import { Entypo } from '@expo/vector-icons'; 
-import { collection, doc, getDocs, onSnapshot, query, setDoc } from 'firebase/firestore'
+import { collection, doc, getDocs, onSnapshot, query, setDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../src/firebase'
 
 const AllMeetups = ({ navigation, route }) => {
@@ -30,9 +30,11 @@ const AllMeetups = ({ navigation, route }) => {
 
 
   const toggleFavorite = (item) => {
-    // dispatch(meatupFavorized(item))
-    console.debug('toggle favorite', item)
-  }
+    const itemRef = doc(db, 'meat-ups', item.id)
+    updateDoc(itemRef, {
+      favorite: !item.favorite
+    })
+};
 
   const navigateTo = (item) => {
     navigation.navigate('MeetupDetails', item)
