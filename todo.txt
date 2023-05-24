@@ -1,4 +1,1 @@
-Hij vraagt de hele tijd naar een unique key, maar dat krijg ik totaal niet goed.
-
 Icoontje in header
-Betere navigatie benaming, structuur app
