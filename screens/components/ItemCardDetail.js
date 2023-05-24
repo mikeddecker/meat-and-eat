@@ -3,15 +3,21 @@ import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import Card from './Card'
 import { toggleItemsFavorite } from '../../src/firebase/firebaseActions';
+import { useAuthStateContext } from '../../src/contexts/AuthUserProvider';
 
 const ItemCardDetail = ({item}) => {
     const iconSize = 36
     const [isFavorite, setIsFavorite] = useState(item.favorite)
-    
+
+    const authStateContext = useAuthStateContext()
+    const userIsAnonymous = authStateContext.user.isAnonymous
+      
     const toggleFavorite = () => {
-        toggleItemsFavorite(item, !isFavorite)
+        if (!userIsAnonymous) {
+            toggleItemsFavorite(item, !isFavorite)
         
-        setIsFavorite(!isFavorite) // for dynamic updates within this component
+            setIsFavorite(!isFavorite) // for dynamic updates within this component
+        }
     };
 
     let stars = []
