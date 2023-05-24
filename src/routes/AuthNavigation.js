@@ -4,68 +4,36 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons, Entypo } from '@expo/vector-icons'; 
-import MeetupDetails from '../../screens/MeetupDetails';
-import AllMeetups from '../../screens/AllMeetups';
-import Header from '../components/Header';
-import About from '../../screens/About';
+import LoginScreen from '../../screens/LoginScreen';
+import RegisterScreen from '../../screens/RegisterScreen';
 
 
 const Tab = createMaterialBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
-const headerComponent = (navigation) => {
-  return (
-    <Header
-      goBack={navigation.canGoBack() ? navigation.goBack : false}
-    />
-  );
-}
-
-const AllMeetupsStack = () => {
-  return (
-    <Stack.Navigator screenOptions={() => ({
-      header: ({ navigation }) => headerComponent(navigation),
-    })}>
-      <Stack.Screen name="All Meetups" component={AllMeetups} />
-      <Stack.Screen name="Details" component={MeetupDetails} />
-    </Stack.Navigator>
-  );
-}
-
-const AboutStack = () => {
-  return (
-    <Stack.Navigator screenOptions={() => ({
-      header: ({ navigation }) => headerComponent(navigation),
-    })}>
-      <Stack.Screen name="About" component={About} />
-    </Stack.Navigator>
-  );
-}
-
-const MeatAndEatNavigation = () => {
+const AuthNavigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="AllMeetups"
+        initialRouteName="Login"
         activeColor="gold" // f0edf6
         inactiveColor="#f0edf6" // 3e2465
         barStyle={styles.barStyle}
       >
         <Tab.Screen 
-          name="AllMeetupsTab" 
-          component={AllMeetupsStack}
+          name="LoginTab" 
+          component={LoginScreen}
           options={{
-            title: 'Meat-ups',
+            title: 'Login',
             tabBarIcon: ({ color }) => (
               <Ionicons name="people-sharp" size={24} color={color} />
             ),
           }} 
         />
         <Tab.Screen 
-          name="AboutTab" 
-          component={AboutStack} 
+          name="RegisterTab" 
+          component={RegisterScreen} 
           options={{
-            title: 'About',
+            title: 'Register',
             tabBarIcon: ({ color }) => (
               <Entypo name="info" size={24} color={color} />
             ),
@@ -81,7 +49,7 @@ const MeatAndEatNavigation = () => {
   )
 }
 
-export default MeatAndEatNavigation
+export default AuthNavigation
 
 const styles = StyleSheet.create({
     container: {

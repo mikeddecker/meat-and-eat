@@ -2,6 +2,7 @@
 
 
 import MeatAndEatNavigation from './src/routes/MeatAndEatNavigation';
+import AuthNavigation from './src/routes/AuthNavigation';
 import * as Font from 'expo-font';
 import { useFonts } from 'expo-font';
 import { AppLoading } from 'expo-app-loading';
@@ -20,10 +21,11 @@ export default function App() {
   // if (!fontsLoaded) {
   //   return <AppLoading/>
   // }
+  const user = false
   
   return (
     <Provider store={store}>
-      <MeatAndEatNavigation/>
+      { user ? <MeatAndEatNavigation/> : <AuthNavigation/> }
     </Provider>
   );
 }
