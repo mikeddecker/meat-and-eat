@@ -8,9 +8,6 @@ const About = () => {
   return (
     <View style={globalStyles.container}>
       <LayoutContainer
-        header={{
-          title: 'About'
-        }}
       >
         <Text style={styles.mike}>Mike</Text>
       </LayoutContainer>
