@@ -88,6 +88,7 @@ const RegisterScreen = () => {
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
                     value={values.password}
+                    secureTextEntry={true}
                   />
                   <Text style={styles.error}>{touched.password && errors.password}</Text>
     
@@ -97,6 +98,7 @@ const RegisterScreen = () => {
                     onChangeText={handleChange('repeatPassword')}
                     onBlur={handleBlur('repeatPassword')}
                     value={values.repeatPassword}
+                    secureTextEntry={true}
                   />
                   <Text style={styles.error}>{touched.repeatPassword && errors.repeatPassword}</Text>
                   

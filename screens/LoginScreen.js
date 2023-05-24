@@ -70,6 +70,7 @@ const LoginScreen = () => {
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
                     value={values.password}
+                    secureTextEntry={true}
                   />
                   <Text style={styles.error}>{touched.password && errors.password}</Text>
     
