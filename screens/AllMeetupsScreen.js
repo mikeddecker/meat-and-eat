@@ -14,7 +14,7 @@ import { useAuthStateContext } from '../src/contexts/AuthUserProvider'
 import { Ionicons } from '@expo/vector-icons'; 
 import { toggleItemsFavorite } from '../src/firebase/firebaseActions'
 
-const AllMeetups = ({ navigation, route }) => {
+const AllMeetupsScreen = ({ navigation, route }) => {
   const authStateContext = useAuthStateContext()
   const userIsAnonymous = authStateContext.user.isAnonymous
 
@@ -115,7 +115,7 @@ const AllMeetups = ({ navigation, route }) => {
   )
 }
 
-export default AllMeetups
+export default AllMeetupsScreen
 
 const styles = StyleSheet.create({
   flatlistContainer: {

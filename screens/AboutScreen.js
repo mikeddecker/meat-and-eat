@@ -7,7 +7,7 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../src/firebase'
 
 
-const About = () => {
+const AboutScreen = () => {
   const authStateContext = useAuthStateContext()
 
   const displayText = authStateContext.user.isAnonymous ? 'Anonymous' : authStateContext.user.displayName
@@ -25,7 +25,7 @@ const About = () => {
   )
 }
 
-export default About
+export default AboutScreen
 
 const styles = StyleSheet.create({
   mike: {

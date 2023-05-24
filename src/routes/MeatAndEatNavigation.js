@@ -3,10 +3,10 @@ import { StyleSheet, StatusBar } from 'react-native'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons, Entypo } from '@expo/vector-icons'; 
-import MeetupDetails from '../../screens/MeetupDetails';
-import AllMeetups from '../../screens/AllMeetups';
+import MeetupDetailsScreen from '../../screens/MeetupDetailsScreen';
+import AllMeetupsScreen from '../../screens/AllMeetupsScreen';
 import Header from '../components/Header';
-import About from '../../screens/About';
+import AboutScreen from '../../screens/AboutScreen';
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -25,8 +25,8 @@ const AllMeetupsStack = () => {
     <Stack.Navigator screenOptions={() => ({
       header: ({ navigation }) => headerComponent(navigation),
     })}>
-      <Stack.Screen name="All Meetups" component={AllMeetups} />
-      <Stack.Screen name="Details" component={MeetupDetails} />
+      <Stack.Screen name="All Meetups" component={AllMeetupsScreen} />
+      <Stack.Screen name="Details" component={MeetupDetailsScreen} />
     </Stack.Navigator>
   );
 }
@@ -36,7 +36,7 @@ const AboutStack = () => {
     <Stack.Navigator screenOptions={() => ({
       header: ({ navigation }) => headerComponent(navigation),
     })}>
-      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="About" component={AboutScreen} />
     </Stack.Navigator>
   );
 }
@@ -44,7 +44,7 @@ const AboutStack = () => {
 const MeatAndEatNavigation = () => {
   return (
     <Tab.Navigator
-      initialRouteName="AllMeetups"
+      initialRouteName="AllMeetupsTab"
       activeColor="gold" // f0edf6
       inactiveColor="#f0edf6" // 3e2465
       barStyle={styles.barStyle}

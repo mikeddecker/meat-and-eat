@@ -5,7 +5,7 @@ import LayoutContainer from '../src/components/LayoutContainer'
 import { MaterialIcons } from '@expo/vector-icons'; 
 import ItemCardDetail from '../src/components/ItemCardDetail';
 
-const MeetupDetails = ({ navigation, route }) => {
+const MeetupDetailsScreen = ({ navigation, route }) => {
   const item = route.params
   const goBack = () => {
     navigation.goBack()
@@ -20,6 +20,6 @@ const MeetupDetails = ({ navigation, route }) => {
   )
 }
 
-export default MeetupDetails
+export default MeetupDetailsScreen
 
 const styles = StyleSheet.create({})
