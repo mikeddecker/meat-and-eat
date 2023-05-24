@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import globalStyles from '../global/globalStyles'
 import Header from './Header'
 
+
 const LayoutContainer = (props) => {
+
     return (
         <View style={globalStyles.container}>
             <Header
