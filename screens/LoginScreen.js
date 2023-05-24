@@ -5,7 +5,9 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import globalStyles from '../src/global/globalStyles';
 import { auth } from '../src/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInAnonymously, signInWithEmailAndPassword } from 'firebase/auth';
+import { MaterialIcons } from '@expo/vector-icons'; 
+
 
 
 const LoginScreen = () => {
@@ -21,9 +23,12 @@ const LoginScreen = () => {
         const password = credentials.password
 
         if (email && password) {
-            signInWithEmailAndPassword(auth, email, password)
-                .catch((err) => console.error(err))
+            signInWithEmailAndPassword(auth, email, password).catch((err) => console.error(err))
         }
+    }
+
+    const signInIcognito = () => {
+        signInAnonymously(auth).catch((err) => console.error(err))
     }
     
 
@@ -74,6 +79,13 @@ const LoginScreen = () => {
                     onPress={handleSubmit}>
                     <Text style={styles.buttonText}>Login</Text>
                   </TouchableOpacity>
+
+                  <TouchableOpacity 
+                    disabled={Object.keys(errors).length > 0} 
+                    style={[styles.button, Object.keys(errors).length > 0 ? styles.backgroundColorGreyBlue : styles.backgroundColorBlue]} 
+                    onPress={signInIcognito}>
+                    <MaterialIcons name="device-unknown" size={36} color="black" style={styles.icognito} />
+                  </TouchableOpacity>
                 </View>
               )}
             </Formik>
@@ -119,8 +131,11 @@ const styles = StyleSheet.create({
     },
     buttonText: {
     color: 'beige',
-    fontSize: 16,
+    fontSize: 24,
     textAlign: 'center',
+    },
+    icognito: {
+        alignSelf: 'center',
     },
     icon: {
     marginVertical: 8
