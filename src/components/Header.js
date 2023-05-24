@@ -10,43 +10,11 @@ const image = require('../img/burger-bg-unsplash.jpg');
 
 // const debouncedCountFetch = debounce(fetchData, 500)
 
-const Header = ({options, amount}) => {
-  // console.debug('rerender header?');
-  const countRef = useRef(-3);
-  const [count, setCount] = useState(-3)
-
-  async function fetchData() {
-    const coll = collection(db, 'meat-ups');
-    const q = query(coll, where('favorite', '==', true));
-    const snapshot = await getCountFromServer(q);
-    setCount(snapshot.data().count);
-    // console.debug('count is', snapshot.data().count);
-  
-    return snapshot.data().count
-  }
-
-  // DEBOUNCE
-  
-  // async function fetchWrapper() {
-  //   const favorites = debouncedCountFetch()
-  //   setCount(favorites)
-  // }
-
-  
-  if (count === countRef.current) {
-    // Could be better, but i can't think of a better way to limit requests.
-    // He was requesting 3 times, a little to much to my norms
-    // console.debug('count and ref are equal', countRef.current)
-    fetchData();
-  } else {
-    countRef.current = count
-  }
-
-
+const Header = ({options}) => {
   return (
     <ImageBackground source={image} style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{countRef.current}</Text>
+        <Text style={styles.text}>{options.amount}</Text>
         <Text style={styles.text}>{options.title}</Text>
       </View>
       {options.goBack && (

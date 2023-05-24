@@ -10,7 +10,6 @@ const LayoutContainer = (props) => {
         <View style={globalStyles.container}>
             <Header
                 options={props.header}
-                amount={-3}
             />
             <View style={[styles.body, props.styles]}>
                 {props.children}

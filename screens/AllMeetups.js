@@ -14,6 +14,11 @@ const AllMeetups = ({ navigation, route }) => {
 
   const [meatups, setMeatups] = useState([])
 
+  const totalFavorites = meatups.reduce(
+    (total, meatup) => total += meatup.favorite ? 1 : 0,
+    0
+  )
+
   useEffect(()=> {
     const dbRef = collection(db, "meat-ups")
 
@@ -72,7 +77,8 @@ const AllMeetups = ({ navigation, route }) => {
 
       <LayoutContainer 
         header={{
-          title: 'Meat-ups'
+          title: 'Meat-ups',
+          amount: totalFavorites
         }}
       >
         <View style={styles.flatlistContainer}>

@@ -9,13 +9,12 @@ import { doc, updateDoc } from 'firebase/firestore';
 const ItemCardDetail = ({item}) => {
     const iconSize = 36
 
-    const realTimeItem = doc
-
     const toggleFavorite = () => {
         const itemRef = doc(db, 'meat-ups', item.id)
         updateDoc(itemRef, {
             favorite: !item.favorite
         })
+        console.debug('favorized', item)
     };
 
     let stars = []
