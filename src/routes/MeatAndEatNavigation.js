@@ -13,21 +13,31 @@ import Header from '../components/Header';
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
+const headerComponent = (navigation) => {
+  return (
+    <Header
+      goBack={navigation.canGoBack() ? navigation.goBack : false}
+    />
+  );
+}
 
 const AllMeetupsStack = () => {
   return (
     <Stack.Navigator screenOptions={() => ({
-      header: ({ navigation }) => {
-        return (
-          <Header
-            goBack={navigation.canGoBack() ? navigation.goBack : false}
-          />
-        );
-      },
-      headerShown: true,
+      header: ({ navigation }) => headerComponent(navigation),
     })}>
       <Stack.Screen name="All Meetups" component={AllMeetups} />
       <Stack.Screen name="Details" component={MeetupDetails} />
+    </Stack.Navigator>
+  );
+}
+
+const AboutStack = () => {
+  return (
+    <Stack.Navigator screenOptions={() => ({
+      header: ({ navigation }) => headerComponent(navigation),
+    })}>
+      <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
 }
@@ -42,7 +52,7 @@ const MeatAndEatNavigation = () => {
         barStyle={styles.barStyle}
       >
         <Tab.Screen 
-          name="AllMeetups" 
+          name="AllMeetupsTab" 
           component={AllMeetupsStack}
           options={{
             title: 'Meat-ups',
@@ -52,8 +62,8 @@ const MeatAndEatNavigation = () => {
           }} 
         />
         <Tab.Screen 
-          name="About" 
-          component={About} 
+          name="AboutTab" 
+          component={AboutStack} 
           options={{
             title: 'About',
             tabBarIcon: ({ color }) => (
