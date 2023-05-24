@@ -13,12 +13,7 @@ const MeetupDetails = ({ navigation, route }) => {
 
   return (
     <View style={globalStyles.container}>
-      <LayoutContainer
-        header={{
-          title: 'Details',
-          goBack: goBack
-        }}
-      >
+      <LayoutContainer>
         <View style={[globalStyles.containerLeft]}>
           <ItemCardDetail item={item} />
         </View>

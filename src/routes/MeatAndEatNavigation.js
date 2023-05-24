@@ -7,6 +7,7 @@ import About from '../../screens/About';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MeetupDetails from '../../screens/MeetupDetails';
 import { Ionicons, Entypo } from '@expo/vector-icons'; 
+import Header from '../components/Header';
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -15,9 +16,18 @@ const Stack = createNativeStackNavigator();
 
 const AllMeetupsStack = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="AllMeetupsScreen" component={AllMeetups} />
-      <Stack.Screen name="MeetupDetails" component={MeetupDetails} />
+    <Stack.Navigator screenOptions={() => ({
+      header: ({ navigation }) => {
+        return (
+          <Header
+            goBack={navigation.canGoBack() ? navigation.goBack : false}
+          />
+        );
+      },
+      headerShown: true,
+    })}>
+      <Stack.Screen name="All Meetups" component={AllMeetups} />
+      <Stack.Screen name="Details" component={MeetupDetails} />
     </Stack.Navigator>
   );
 }

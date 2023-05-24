@@ -13,18 +13,8 @@ import { meatupsSetted } from '../store/slicers/meatupSlice'
 
 const AllMeetups = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false)
-
   const [meatups, setMeatups] = useState([])
-
   const dispatch = useDispatch();
-  if (meatups.length) {
-    dispatch(meatupsSetted(meatups))
-  }
-
-  const totalFavorites = meatups.reduce(
-    (total, meatup) => total += meatup.favorite ? 1 : 0,
-    0
-  )
 
   useEffect(()=> {
     const dbRef = collection(db, "meat-ups")
@@ -38,7 +28,11 @@ const AllMeetups = ({ navigation, route }) => {
     return () => unsubscribe()
   }, [])
 
-
+  useEffect(() => {
+    if (meatups.length) {
+      dispatch(meatupsSetted(meatups));
+    }
+  }, [dispatch, meatups]);
 
 
   const toggleFavorite = (item) => {
@@ -49,7 +43,7 @@ const AllMeetups = ({ navigation, route }) => {
 };
 
   const navigateTo = (item) => {
-    navigation.navigate('MeetupDetails', item)
+    navigation.navigate('Details', item)
   }
 
   const addLocation = (location) => {
@@ -83,10 +77,6 @@ const AllMeetups = ({ navigation, route }) => {
       </Modal>
 
       <LayoutContainer 
-        header={{
-          title: 'Meat-ups',
-          amount: totalFavorites
-        }}
       >
         <View style={styles.flatlistContainer}>
           <FlatList

@@ -1,33 +1,32 @@
 import { StatusBar, StyleSheet, Text, ImageBackground, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'; 
 import React, { useEffect, useRef, useState } from 'react'
-import { collection, getCountFromServer, query, where } from 'firebase/firestore';
-import { db } from '../firebase';
 import { debounce } from 'lodash';
 import { useSelector } from 'react-redux';
 import { favoriteCount } from '../../store/slicers/meatupSlice';
+import { useRoute } from '@react-navigation/native';
 
 
 const image = require('../img/burger-bg-unsplash.jpg');
 
-// const debouncedCountFetch = debounce(fetchData, 500)
-
-const Header = ({options}) => {
-
+const Header = ({ goBack }) => {
+   
   const count = useSelector(favoriteCount)
+  const route = useRoute();
+
   return (
     <ImageBackground source={image} style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.text}>{count}</Text>
-        <Text style={styles.text}>{options.title}</Text>
+        <Text style={styles.text}>{route.name}</Text>
       </View>
-      {options.goBack && (
+      {goBack && (
         <MaterialIcons 
           name="backspace"
           size={48} 
           color="white" 
           style={styles.icon} 
-          onPress={() => options.goBack()}/>
+          onPress={() => goBack()}/>
       )}
     </ImageBackground>
   )
@@ -48,7 +47,6 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    // backgroundColor: 'green',
     
     justifyContent: 'space-around',
     alignSelf: 'center',
