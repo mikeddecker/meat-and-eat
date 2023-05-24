@@ -10,7 +10,6 @@ import { auth } from '../src/firebase'
 const About = () => {
   const authStateContext = useAuthStateContext()
 
-  console.debug('displayName', authStateContext.user.displayName)
   return (
     <View style={globalStyles.container}>
       <LayoutContainer
