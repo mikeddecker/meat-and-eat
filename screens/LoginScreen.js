@@ -81,8 +81,7 @@ const LoginScreen = () => {
                   </TouchableOpacity>
 
                   <TouchableOpacity 
-                    disabled={Object.keys(errors).length > 0} 
-                    style={[styles.button, Object.keys(errors).length > 0 ? styles.backgroundColorGreyBlue : styles.backgroundColorBlue]} 
+                    style={[styles.button, styles.backgroundColorBlue]} 
                     onPress={signInIcognito}>
                     <MaterialIcons name="device-unknown" size={36} color="black" style={styles.icognito} />
                   </TouchableOpacity>
