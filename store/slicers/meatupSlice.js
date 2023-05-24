@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-
-
 const meatUpSlice = createSlice({
   name: 'meatUps',
   initialState: [],
@@ -11,7 +9,6 @@ const meatUpSlice = createSlice({
     },
   },
 })
-
 
 export const meatupLocations = state => state.meatUps
 export const favoriteCount = state =>

@@ -4,7 +4,7 @@ export default StyleSheet.create({
     container: {
       flex: 1,
       width: '100%',
-      backgroundColor: '#d1a221', // 12932f
+      backgroundColor: '#d1a221',
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
