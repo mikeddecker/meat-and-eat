@@ -9,7 +9,6 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 
 const RegisterScreen = () => {
-    const [succes, setSucces] = useState(false)
     const dismissKeyboard = () => {
         Keyboard.dismiss()
     };
@@ -21,23 +20,16 @@ const RegisterScreen = () => {
         const email = credentials.email
         const password = credentials.password
         const repeatPassword = credentials.repeatPassword
-        console.log('auth current user', auth.currentUser)
 
         if (name && email && password && repeatPassword) {
             if (password === repeatPassword) {
                 createUserWithEmailAndPassword(auth, email, password)
-                    .then((userCredentials) => {
-                        console.log(userCredentials)
-                        console.log('auth current user', auth.currentUser)
+                    .then(() => {
                         updateProfile(auth.currentUser, { displayName: name})
-                        setSucces(true)
-                        return
                     })
                     .catch((err) => console.error(err))
             }
         }
-
-        setSucces(false)
     }
     
 
@@ -114,8 +106,6 @@ const RegisterScreen = () => {
                     onPress={handleSubmit}>
                     <Text style={styles.buttonText}>Register</Text>
                   </TouchableOpacity>
-
-                  { succes ? <Text>Succes</Text> : <Text></Text>}
                 </View>
               )}
             </Formik>

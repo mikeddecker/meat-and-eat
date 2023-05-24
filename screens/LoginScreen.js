@@ -9,14 +9,10 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 
 
 const LoginScreen = () => {
-    const [succes, setSucces] = useState(null)
     const dismissKeyboard = () => {
         Keyboard.dismiss()
     };
 
-    if (succes) {
-        console.debug('succes', succes)
-    }
     
     const touchableRef = useRef(null)
 
@@ -26,15 +22,8 @@ const LoginScreen = () => {
 
         if (email && password) {
             signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    console.log(userCredential)
-                    setSucces(true)
-                    // navigate, update state
-                })
                 .catch((err) => console.error(err))
         }
-
-        setSucces(false)
     }
     
 
@@ -85,8 +74,6 @@ const LoginScreen = () => {
                     onPress={handleSubmit}>
                     <Text style={styles.buttonText}>Login</Text>
                   </TouchableOpacity>
-
-                  { succes ? <Text>{succes} - Succes</Text> : <Text>Vul je gegevens in om in te loggen</Text>}
                 </View>
               )}
             </Formik>
