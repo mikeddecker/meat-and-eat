@@ -12,40 +12,33 @@ const Tab = createMaterialBottomTabNavigator();
 
 const AuthNavigation = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Login"
-        activeColor="gold" // f0edf6
-        inactiveColor="#f0edf6" // 3e2465
-        barStyle={styles.barStyle}
-      >
-        <Tab.Screen 
-          name="LoginTab" 
-          component={LoginScreen}
-          options={{
-            title: 'Login',
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="people-sharp" size={24} color={color} />
-            ),
-          }} 
-        />
-        <Tab.Screen 
-          name="RegisterTab" 
-          component={RegisterScreen} 
-          options={{
-            title: 'Register',
-            tabBarIcon: ({ color }) => (
-              <Entypo name="info" size={24} color={color} />
-            ),
-          }} 
-        />
-      </Tab.Navigator>
-      <StatusBar  
-        animated={true}
-        backgroundColor="saddlebrown"
-        barStyle="auto"
-      />
-    </NavigationContainer>
+    <Tab.Navigator
+    initialRouteName="Login"
+    activeColor="gold" // f0edf6
+    inactiveColor="#f0edf6" // 3e2465
+    barStyle={styles.barStyle}
+    >
+    <Tab.Screen 
+        name="LoginTab" 
+        component={LoginScreen}
+        options={{
+        title: 'Login',
+        tabBarIcon: ({ color }) => (
+            <Ionicons name="people-sharp" size={24} color={color} />
+        ),
+        }} 
+    />
+    <Tab.Screen 
+        name="RegisterTab" 
+        component={RegisterScreen} 
+        options={{
+        title: 'Register',
+        tabBarIcon: ({ color }) => (
+            <Entypo name="info" size={24} color={color} />
+        ),
+        }} 
+    />
+    </Tab.Navigator>
   )
 }
 

@@ -10,6 +10,8 @@ import { store } from './store'
 
 
 import { Provider } from 'react-redux'
+import AuthUserProvider from './src/contexts/AuthUserProvider';
+import RootNavigator from './src/routes/RootNavigator';
 
 export default function App() {
   // fonts
@@ -21,11 +23,12 @@ export default function App() {
   // if (!fontsLoaded) {
   //   return <AppLoading/>
   // }
-  const user = false
   
   return (
     <Provider store={store}>
-      { user ? <MeatAndEatNavigation/> : <AuthNavigation/> }
+      <AuthUserProvider>
+        <RootNavigator/>
+      </AuthUserProvider>
     </Provider>
   );
 }

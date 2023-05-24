@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, StatusBar } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons, Entypo } from '@expo/vector-icons'; 
@@ -44,40 +43,33 @@ const AboutStack = () => {
 
 const MeatAndEatNavigation = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="AllMeetups"
-        activeColor="gold" // f0edf6
-        inactiveColor="#f0edf6" // 3e2465
-        barStyle={styles.barStyle}
-      >
-        <Tab.Screen 
-          name="AllMeetupsTab" 
-          component={AllMeetupsStack}
-          options={{
-            title: 'Meat-ups',
-            tabBarIcon: ({ color }) => (
-              <Ionicons name="people-sharp" size={24} color={color} />
-            ),
-          }} 
-        />
-        <Tab.Screen 
-          name="AboutTab" 
-          component={AboutStack} 
-          options={{
-            title: 'About',
-            tabBarIcon: ({ color }) => (
-              <Entypo name="info" size={24} color={color} />
-            ),
-          }} 
-        />
-      </Tab.Navigator>
-      <StatusBar  
-        animated={true}
-        backgroundColor="saddlebrown"
-        barStyle="auto"
+    <Tab.Navigator
+      initialRouteName="AllMeetups"
+      activeColor="gold" // f0edf6
+      inactiveColor="#f0edf6" // 3e2465
+      barStyle={styles.barStyle}
+    >
+      <Tab.Screen 
+        name="AllMeetupsTab" 
+        component={AllMeetupsStack}
+        options={{
+          title: 'Meat-ups',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="people-sharp" size={24} color={color} />
+          ),
+        }} 
       />
-    </NavigationContainer>
+      <Tab.Screen 
+        name="AboutTab" 
+        component={AboutStack} 
+        options={{
+          title: 'About',
+          tabBarIcon: ({ color }) => (
+            <Entypo name="info" size={24} color={color} />
+          ),
+        }} 
+      />
+    </Tab.Navigator>
   )
 }
 
