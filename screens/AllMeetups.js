@@ -8,11 +8,18 @@ import AddMeetupLocation from '../src/components/AddMeetupLocation'
 import { Entypo } from '@expo/vector-icons'; 
 import { collection, doc, getDocs, onSnapshot, query, setDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../src/firebase'
+import { useDispatch } from 'react-redux'
+import { meatupsSetted } from '../store/slicers/meatupSlice'
 
 const AllMeetups = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false)
 
   const [meatups, setMeatups] = useState([])
+
+  const dispatch = useDispatch();
+  if (meatups.length) {
+    dispatch(meatupsSetted(meatups))
+  }
 
   const totalFavorites = meatups.reduce(
     (total, meatup) => total += meatup.favorite ? 1 : 0,

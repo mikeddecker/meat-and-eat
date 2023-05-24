@@ -5,6 +5,8 @@ import MeatAndEatNavigation from './src/routes/MeatAndEatNavigation';
 import * as Font from 'expo-font';
 import { useFonts } from 'expo-font';
 import { AppLoading } from 'expo-app-loading';
+import { store } from './store'
+
 
 import { Provider } from 'react-redux'
 
@@ -20,8 +22,8 @@ export default function App() {
   // }
   
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
       <MeatAndEatNavigation/>
-    // </Provider>
+    </Provider>
   );
 }

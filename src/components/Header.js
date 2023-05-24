@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { collection, getCountFromServer, query, where } from 'firebase/firestore';
 import { db } from '../firebase';
 import { debounce } from 'lodash';
+import { useSelector } from 'react-redux';
+import { favoriteCount } from '../../store/slicers/meatupSlice';
 
 
 const image = require('../img/burger-bg-unsplash.jpg');
@@ -11,10 +13,12 @@ const image = require('../img/burger-bg-unsplash.jpg');
 // const debouncedCountFetch = debounce(fetchData, 500)
 
 const Header = ({options}) => {
+
+  const count = useSelector(favoriteCount)
   return (
     <ImageBackground source={image} style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>{options.amount}</Text>
+        <Text style={styles.text}>{count}</Text>
         <Text style={styles.text}>{options.title}</Text>
       </View>
       {options.goBack && (

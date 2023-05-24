@@ -9,12 +9,16 @@ import { doc, updateDoc } from 'firebase/firestore';
 const ItemCardDetail = ({item}) => {
     const iconSize = 36
 
+    const [isFavorite, setIsFavorite] = useState(item.favorite)
+
     const toggleFavorite = () => {
         const itemRef = doc(db, 'meat-ups', item.id)
         updateDoc(itemRef, {
-            favorite: !item.favorite
+            favorite: !isFavorite
         })
-        console.debug('favorized', item)
+        
+        // for dynamic updates within this component
+        setIsFavorite(!isFavorite)
     };
 
     let stars = []
@@ -35,7 +39,7 @@ const ItemCardDetail = ({item}) => {
                 </View>
                 <View style={[styles.icons, styles.marginV]}>
                     {
-                    item.favorite
+                    isFavorite
                     ?
                     <MaterialIcons name="favorite" size={iconSize * 2} color="red" onPress={toggleFavorite}  style={styles.icon}/> :
                     <MaterialIcons name="favorite-border" size={iconSize * 2} color="coral" onPress={toggleFavorite} style={styles.icon} />
