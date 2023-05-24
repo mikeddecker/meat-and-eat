@@ -12,6 +12,7 @@ const AboutScreen = () => {
 
   return (
     <LayoutContainer>
+      <Text style={styles.smaller}>{ authStateContext.user.email }</Text>
       <Text style={styles.mike}>{ displayText }</Text>
 
       <TouchableOpacity 
@@ -29,6 +30,10 @@ const styles = StyleSheet.create({
   mike: {
     fontSize: 72,
     color: 'gold'
+  },
+  smaller: {
+    fontSize: 28,
+    color: 'brown'
   },
   button: {
     backgroundColor: 'blue',
