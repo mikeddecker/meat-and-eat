@@ -1,18 +1,17 @@
-import { StyleSheet, View, Modal, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import globalStyles from '../src/global/globalStyles'
-import LayoutContainer from '../src/components/LayoutContainer'
-import { FlatList } from 'react-native'
-import ItemCard from '../src/components/ItemCard'
-import AddMeetupLocation from '../src/components/AddMeetupLocation'
-import { Entypo } from '@expo/vector-icons'; 
-import { collection, doc, onSnapshot, setDoc } from 'firebase/firestore'
 import { db } from '../src/firebase'
+import { Entypo } from '@expo/vector-icons'; 
+import { FlatList } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'; 
 import { useDispatch } from 'react-redux'
 import { meatupsSetted } from '../store/slicers/meatupSlice'
 import { useAuthStateContext } from '../src/contexts/AuthUserProvider'
-import { Ionicons } from '@expo/vector-icons'; 
 import { toggleItemsFavorite } from '../src/firebase/firebaseActions'
+import { StyleSheet, View, Modal, Alert } from 'react-native'
+import { collection, doc, onSnapshot, setDoc } from 'firebase/firestore'
+import AddMeetupLocation from '../src/components/AddMeetupLocation'
+import LayoutContainer from '../src/components/LayoutContainer'
+import ItemCard from '../src/components/ItemCard'
 
 const AllMeetupsScreen = ({ navigation, route }) => {
   const authStateContext = useAuthStateContext()
@@ -81,37 +80,34 @@ const AllMeetupsScreen = ({ navigation, route }) => {
         />
       </Modal>
 
-        <View style={styles.flatlistContainer}>
-          <FlatList
-            data={meatups}
-            renderItem={({item}) => (
-              <ItemCard 
-                item={item} 
-                onNavigate={navigateTo}
-                onFavorite={() => toggleFavorite(item)}
-                />
-            )}
-            horizontal={false}
-            numColumns={2}
-          >
-
-          </FlatList>
-        
-        </View>
-        
-        {
-          userIsAnonymous ? 
-          <Ionicons name="fast-food-outline" size={48} color="black" />
-          :
-          <Entypo 
-          name="add-to-list" 
-          onPress={() => setModalVisible(true)}
-          size={48} 
-          color="black" 
-          style={styles.icon}/>
-        }
-
-      </LayoutContainer>
+      <View style={styles.flatlistContainer}>
+        <FlatList
+          data={meatups}
+          renderItem={({item}) => (
+            <ItemCard 
+              item={item} 
+              onNavigate={navigateTo}
+              onFavorite={() => toggleFavorite(item)}
+              />
+          )}
+          horizontal={false}
+          numColumns={2}
+        >
+        </FlatList>
+      </View>
+      
+      {
+        userIsAnonymous ? 
+        <Ionicons name="fast-food-outline" size={48} color="black" />
+        :
+        <Entypo 
+        name="add-to-list" 
+        onPress={() => setModalVisible(true)}
+        size={48} 
+        color="black" 
+        style={styles.icon}/>
+      }
+    </LayoutContainer>
   )
 }
 

@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native'
-import React, { useRef, useState, useEffect } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import React, { useRef } from 'react'
 import { TextInput } from 'react-native-paper'
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -119,47 +119,47 @@ const RegisterScreen = () => {
 export default RegisterScreen
 
 const styles = StyleSheet.create({
-    label: {
+  label: {
     fontSize: 24,
     marginTop: 8,
     marginBottom: 12,
     color: 'black'
-    },
-    textInput: {
+  },
+  textInput: {
     width: '100%',
     borderTopLeftRadius: 10, // TextInput gets borderTopLeftRadius: 4 if nothing specified
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    },
-    form: {
+  },
+  form: {
     width: '100%',
-    },
-    indent: {
+  },
+  indent: {
     paddingHorizontal: 25,
     paddingVertical: 15
-    },
-    button: {
+  },
+  button: {
     backgroundColor: 'blue',
     padding: 10,
     borderRadius: 8,
     marginTop: 36,
-    },
-    backgroundColorBlue: {
+  },
+  backgroundColorBlue: {
     backgroundColor: 'saddlebrown'
     },
-    backgroundColorGreyBlue: {
+  backgroundColorGreyBlue: {
     backgroundColor: '#008080'
-    },
-    buttonText: {
+  },
+  buttonText: {
     color: 'beige',
     fontSize: 16,
     textAlign: 'center',
-    },
-    icon: {
+  },
+  icon: {
     marginVertical: 8
     },
-    error: {
+  error: {
     color: 'gold',
     fontSize: 18
     }

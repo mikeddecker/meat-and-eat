@@ -1,10 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import globalStyles from '../src/global/globalStyles'
-import LayoutContainer from '../src/components/LayoutContainer'
-import { useAuthStateContext } from '../src/contexts/AuthUserProvider'
-import { signOut } from 'firebase/auth'
 import { auth } from '../src/firebase'
+import { signOut } from 'firebase/auth'
+import { useAuthStateContext } from '../src/contexts/AuthUserProvider'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import LayoutContainer from '../src/components/LayoutContainer'
 
 
 const AboutScreen = () => {
