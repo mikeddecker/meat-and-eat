@@ -13,19 +13,15 @@ const About = () => {
   const displayText = authStateContext.user.isAnonymous ? 'Anonymous' : authStateContext.user.displayName
 
   return (
-    <View style={globalStyles.container}>
-      <LayoutContainer
-      >
-        <Text style={styles.mike}>{ displayText }</Text>
+    <LayoutContainer>
+      <Text style={styles.mike}>{ displayText }</Text>
 
-        <TouchableOpacity 
-          style={[styles.button, styles.backgroundColorBlue]} 
-          onPress={() => signOut(auth)}>
-          <Text style={styles.buttonText}>Sign out</Text>
-        </TouchableOpacity>
-
-      </LayoutContainer>
-    </View>
+      <TouchableOpacity 
+        style={[styles.button, styles.backgroundColorBlue]} 
+        onPress={() => signOut(auth)}>
+        <Text style={styles.buttonText}>Sign out</Text>
+      </TouchableOpacity>
+    </LayoutContainer>
   )
 }
 

@@ -12,13 +12,11 @@ const MeetupDetails = ({ navigation, route }) => {
   }
 
   return (
-    <View style={globalStyles.container}>
-      <LayoutContainer>
-        <View style={[globalStyles.containerLeft]}>
-          <ItemCardDetail item={item} />
-        </View>
-      </LayoutContainer>
-    </View>
+    <LayoutContainer>
+      <View style={[globalStyles.containerLeft]}>
+        <ItemCardDetail item={item} />
+      </View>
+    </LayoutContainer>
   )
 }
 

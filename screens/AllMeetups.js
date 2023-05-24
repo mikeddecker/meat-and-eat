@@ -70,7 +70,7 @@ const AllMeetups = ({ navigation, route }) => {
   }
 
   return (
-    <View style={globalStyles.container}>
+    <LayoutContainer>
       <Modal 
         animationType="slide"
         transparent={true}
@@ -81,8 +81,6 @@ const AllMeetups = ({ navigation, route }) => {
         />
       </Modal>
 
-      <LayoutContainer 
-      >
         <View style={styles.flatlistContainer}>
           <FlatList
             data={meatups}
@@ -113,9 +111,7 @@ const AllMeetups = ({ navigation, route }) => {
           style={styles.icon}/>
         }
 
-      {/* Footer to switch, but I expect it to be in the nav */}
       </LayoutContainer>
-    </View>
   )
 }
 
