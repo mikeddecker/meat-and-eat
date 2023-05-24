@@ -1,7 +1,0 @@
-Icoontje in header
-
-Auth
-inloggen
-registreren
-uitoggen
-anoniem
