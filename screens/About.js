@@ -10,11 +10,13 @@ import { auth } from '../src/firebase'
 const About = () => {
   const authStateContext = useAuthStateContext()
 
+  const displayText = authStateContext.user.isAnonymous ? 'Anonymous' : authStateContext.user.displayName
+
   return (
     <View style={globalStyles.container}>
       <LayoutContainer
       >
-        <Text style={styles.mike}>{authStateContext.user.displayName}</Text>
+        <Text style={styles.mike}>{ displayText }</Text>
 
         <TouchableOpacity 
           style={[styles.button, styles.backgroundColorBlue]} 
@@ -31,7 +33,7 @@ export default About
 
 const styles = StyleSheet.create({
   mike: {
-    fontSize: 96,
+    fontSize: 72,
     color: 'gold'
   },
   button: {

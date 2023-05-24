@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet, Text, View, Button, Modal, Alert } from 'react-native'
+import { StyleSheet, View, Modal, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import globalStyles from '../src/global/globalStyles'
 import LayoutContainer from '../src/components/LayoutContainer'
@@ -6,12 +6,18 @@ import { FlatList } from 'react-native'
 import ItemCard from '../src/components/ItemCard'
 import AddMeetupLocation from '../src/components/AddMeetupLocation'
 import { Entypo } from '@expo/vector-icons'; 
-import { collection, doc, getDocs, onSnapshot, query, setDoc, updateDoc } from 'firebase/firestore'
+import { collection, doc, onSnapshot, setDoc } from 'firebase/firestore'
 import { db } from '../src/firebase'
 import { useDispatch } from 'react-redux'
 import { meatupsSetted } from '../store/slicers/meatupSlice'
+import { useAuthStateContext } from '../src/contexts/AuthUserProvider'
+import { Ionicons } from '@expo/vector-icons'; 
+import { toggleItemsFavorite } from '../src/firebase/firebaseActions'
 
 const AllMeetups = ({ navigation, route }) => {
+  const authStateContext = useAuthStateContext()
+  const userIsAnonymous = authStateContext.user.isAnonymous
+
   const [modalVisible, setModalVisible] = useState(false)
   const [meatups, setMeatups] = useState([])
   const dispatch = useDispatch();
@@ -36,11 +42,10 @@ const AllMeetups = ({ navigation, route }) => {
 
 
   const toggleFavorite = (item) => {
-    const itemRef = doc(db, 'meat-ups', item.id)
-    updateDoc(itemRef, {
-      favorite: !item.favorite
-    })
-};
+    if (!userIsAnonymous) {
+      toggleItemsFavorite(item, !item.favorite)
+    }
+  }
 
   const navigateTo = (item) => {
     navigation.navigate('Details', item)
@@ -95,13 +100,18 @@ const AllMeetups = ({ navigation, route }) => {
           </FlatList>
         
         </View>
-
-        <Entypo 
+        
+        {
+          userIsAnonymous ? 
+          <Ionicons name="fast-food-outline" size={48} color="black" />
+          :
+          <Entypo 
           name="add-to-list" 
           onPress={() => setModalVisible(true)}
           size={48} 
           color="black" 
           style={styles.icon}/>
+        }
 
       {/* Footer to switch, but I expect it to be in the nav */}
       </LayoutContainer>

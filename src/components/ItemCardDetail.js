@@ -2,20 +2,22 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import Card from './Card'
+import { useAuthStateContext } from '../contexts/AuthUserProvider';
+import { toggleItemsFavorite } from '../firebase/firebaseActions';
 import { db } from '../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 
 
 const ItemCardDetail = ({item}) => {
     const iconSize = 36
+    const authStateContext = useAuthStateContext()
+    const userIsAnonymous = authStateContext.user.isAnonymous
+  
 
     const [isFavorite, setIsFavorite] = useState(item.favorite)
-
+    
     const toggleFavorite = () => {
-        const itemRef = doc(db, 'meat-ups', item.id)
-        updateDoc(itemRef, {
-            favorite: !isFavorite
-        })
+        toggleItemsFavorite(item, !isFavorite)
         
         // for dynamic updates within this component
         setIsFavorite(!isFavorite)

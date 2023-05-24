@@ -4,8 +4,12 @@ import Card from './Card'
 import React from 'react'
 import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { useAuthStateContext } from '../contexts/AuthUserProvider';
 
 const ItemCard = ({ item, onNavigate, onFavorite }) => {
+    const authStateContext = useAuthStateContext()
+    const userIsAnonymous = authStateContext.user.isAnonymous
+
     const iconSize = 36
 
     const navigate = () => {
@@ -24,9 +28,11 @@ const ItemCard = ({ item, onNavigate, onFavorite }) => {
                     <TouchableOpacity onPress={() => navigate()}>
                         <MaterialIcons name="info" size={iconSize} color="black" style={styles.icon} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={deleteLocation}>
+                    {!userIsAnonymous && (
+                        <TouchableOpacity onPress={deleteLocation}>
                         <MaterialIcons name="delete" size={iconSize} color="gold" style={styles.icon} />
-                    </TouchableOpacity>
+                        </TouchableOpacity>
+                    )}
                     {
                         item.favorite ? 
                         <MaterialIcons name="favorite" size={iconSize} color="red" onPress={onFavorite}  style={styles.icon}/> : 
