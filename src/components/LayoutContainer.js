@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, View } from 'react-native'
+import React from 'react'
 import globalStyles from '../global/globalStyles'
 
 const LayoutContainer = (props) => {
     return (
         <View style={globalStyles.container}>
-            <View style={[styles.body, props.styles]}>
+            <View style={styles.body}>
                 {props.children}
             </View>
         </View>

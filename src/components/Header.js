@@ -1,16 +1,13 @@
-import { StatusBar, StyleSheet, Text, ImageBackground, View } from 'react-native'
+import { StyleSheet, Text, ImageBackground, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'; 
-import React, { useEffect, useRef, useState } from 'react'
-import { debounce } from 'lodash';
+import React from 'react'
 import { useSelector } from 'react-redux';
 import { favoriteCount } from '../../store/slicers/meatupSlice';
 import { useRoute } from '@react-navigation/native';
 
-
 const image = require('../img/burger-bg-unsplash.jpg');
 
 const Header = ({ goBack }) => {
-   
   const count = useSelector(favoriteCount)
   const route = useRoute();
 
@@ -20,7 +17,8 @@ const Header = ({ goBack }) => {
         <Text style={styles.text}>{count}</Text>
         <Text style={styles.text}>{route.name}</Text>
       </View>
-      {goBack && (
+
+      { goBack && (
         <MaterialIcons 
           name="backspace"
           size={48} 
@@ -47,7 +45,6 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    
     justifyContent: 'space-around',
     alignSelf: 'center',
     alignItems: 'center',
@@ -62,7 +59,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-
     marginLeft: 35,
     shadowColor: 'black', 
     shadowOffset: { width: 0, height: 2 }, 

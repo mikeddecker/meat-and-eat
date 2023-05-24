@@ -47,7 +47,6 @@ const ItemCard = ({ item, onNavigate, onFavorite }) => {
 export default ItemCard
 
 const styles = StyleSheet.create({
-
     cardContainer: {
         flex: 1
     },
