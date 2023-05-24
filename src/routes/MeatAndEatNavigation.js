@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, StatusBar } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons, Entypo } from '@expo/vector-icons'; 
 import MeetupDetailsScreen from '../../screens/MeetupDetailsScreen';
 import AllMeetupsScreen from '../../screens/AllMeetupsScreen';
-import Header from '../components/Header';
 import AboutScreen from '../../screens/AboutScreen';
+import Header from '../../screens/components/Header';
 
 
 const Tab = createMaterialBottomTabNavigator();

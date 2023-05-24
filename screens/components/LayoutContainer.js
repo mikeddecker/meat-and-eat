@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import globalStyles from '../global/globalStyles'
+import globalStyles from '../../src/global/globalStyles'
 
 const LayoutContainer = (props) => {
     return (

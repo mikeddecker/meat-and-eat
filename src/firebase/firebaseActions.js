@@ -1,4 +1,4 @@
-import { doc, updateDoc } from "firebase/firestore"
+import { deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { db } from "."
 
 export const toggleItemsFavorite = (item, favorite) => {
@@ -6,4 +6,8 @@ export const toggleItemsFavorite = (item, favorite) => {
     updateDoc(itemRef, {
         favorite: favorite
     })
+}
+
+export const deleteItem = (itemId) => {
+    deleteDoc(doc(db, 'meat-ups', itemId))
 }

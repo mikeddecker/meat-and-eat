@@ -9,9 +9,9 @@ import { useAuthStateContext } from '../src/contexts/AuthUserProvider'
 import { toggleItemsFavorite } from '../src/firebase/firebaseActions'
 import { StyleSheet, View, Modal, Alert } from 'react-native'
 import { collection, doc, onSnapshot, setDoc } from 'firebase/firestore'
-import AddMeetupLocation from '../src/components/AddMeetupLocation'
-import LayoutContainer from '../src/components/LayoutContainer'
-import ItemCard from '../src/components/ItemCard'
+import AddMeetupLocation from './components/AddMeetupLocation';
+import ItemCard from './components/ItemCard';
+import LayoutContainer from './components/LayoutContainer';
 
 const AllMeetupsScreen = ({ navigation, route }) => {
   const authStateContext = useAuthStateContext()
@@ -74,7 +74,7 @@ const AllMeetupsScreen = ({ navigation, route }) => {
         animationType="slide"
         transparent={true}
         visible={modalVisible}>
-        <AddMeetupLocation 
+        <AddMeetupLocation
           onClose={() => setModalVisible(false)}
           addLocation={addLocation}
         />
@@ -84,7 +84,7 @@ const AllMeetupsScreen = ({ navigation, route }) => {
         <FlatList
           data={meatups}
           renderItem={({item}) => (
-            <ItemCard 
+            <ItemCard
               item={item} 
               onNavigate={navigateTo}
               onFavorite={() => toggleFavorite(item)}

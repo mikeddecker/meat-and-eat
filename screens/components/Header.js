@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { favoriteCount } from '../../store/slicers/meatupSlice';
 import { useRoute } from '@react-navigation/native';
 
-const image = require('../img/burger-bg-unsplash.jpg');
+const image = require('../../src/img/burger-bg-unsplash.jpg');
 
 const Header = ({ goBack }) => {
   const count = useSelector(favoriteCount)

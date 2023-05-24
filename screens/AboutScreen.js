@@ -3,8 +3,7 @@ import { auth } from '../src/firebase'
 import { signOut } from 'firebase/auth'
 import { useAuthStateContext } from '../src/contexts/AuthUserProvider'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import LayoutContainer from '../src/components/LayoutContainer'
-
+import LayoutContainer from './components/LayoutContainer'
 
 const AboutScreen = () => {
   const authStateContext = useAuthStateContext()

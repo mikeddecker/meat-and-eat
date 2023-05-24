@@ -2,9 +2,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'; 
 import Card from './Card'
 import React from 'react'
-import { deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase';
-import { useAuthStateContext } from '../contexts/AuthUserProvider';
+import { deleteItem } from '../../src/firebase/firebaseActions';
+import { useAuthStateContext } from '../../src/contexts/AuthUserProvider';
 
 const ItemCard = ({ item, onNavigate, onFavorite }) => {
     const authStateContext = useAuthStateContext()
@@ -17,7 +16,7 @@ const ItemCard = ({ item, onNavigate, onFavorite }) => {
     }
 
     const deleteLocation = () => {
-        deleteDoc(doc(db, 'meat-ups', item.id))
+        deleteItem(item.id)
     }
 
     return (

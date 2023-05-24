@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useRef } from 'react'
-import globalStyles from '../global/globalStyles'
 import { TextInput } from 'react-native-paper'
 import { Formik } from 'formik';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import * as yup from 'yup';
+import globalStyles from '../../src/global/globalStyles';
 
 const AddMeetupLocation = ({ onClose, addLocation }) => {
   const dismissKeyboard = () => {

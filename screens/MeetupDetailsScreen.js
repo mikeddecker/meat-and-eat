@@ -1,8 +1,8 @@
 import { View } from 'react-native'
 import React from 'react'
 import globalStyles from '../src/global/globalStyles'
-import LayoutContainer from '../src/components/LayoutContainer'
-import ItemCardDetail from '../src/components/ItemCardDetail';
+import LayoutContainer from './components/LayoutContainer'
+import ItemCardDetail from './components/ItemCardDetail'
 
 const MeetupDetailsScreen = ({ route }) => {
   const item = route.params

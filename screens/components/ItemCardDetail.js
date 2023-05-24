@@ -2,8 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import Card from './Card'
-import { toggleItemsFavorite } from '../firebase/firebaseActions';
-
+import { toggleItemsFavorite } from '../../src/firebase/firebaseActions';
 
 const ItemCardDetail = ({item}) => {
     const iconSize = 36
